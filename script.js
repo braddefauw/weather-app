@@ -18,5 +18,8 @@ async function getWeather() {
     let celsius = Math.round(kelvin - 273.15);
     let mainWeather = weatherData.weather[0].main;
     let description = weatherData.weather[0].description;
-    console.log(fahrenheit, celsius, mainWeather, description);
+    let feelsLike = weatherData.main.feels_like;
+    let feelsLikeF = Math.round((feelsLike - 273.15) * 9/5 +32);
+    let feelsLikeC = Math.round(feelsLike - 273.15);
+    console.log(fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF);
 }
