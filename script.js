@@ -21,5 +21,14 @@ async function getWeather() {
     let feelsLike = weatherData.main.feels_like;
     let feelsLikeF = Math.round((feelsLike - 273.15) * 9/5 +32);
     let feelsLikeC = Math.round(feelsLike - 273.15);
-    console.log(fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF);
+    let humidity = weatherData.main.humidity;
+    let pressure = weatherData.main.pressure;
+    let lowTemp = weatherData.main.temp_min;
+    let lowTempF = Math.round((lowTemp - 273.15) * 9/5 +32);
+    let lowTempC = Math.round(lowTemp - 273.15);
+    let highTemp = weatherData.main.temp_max;
+    let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
+    let highTempC = Math.round(highTemp - 273.15);
+    console.log(fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
+        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF);
 }
