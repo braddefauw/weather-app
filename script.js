@@ -19,6 +19,7 @@ async function getWeather() {
     const weatherData = await response.json();
     const newData = processData(weatherData);
     displayData(newData);
+    reset();
 }
 
 function processData(weatherData){
@@ -45,4 +46,8 @@ function processData(weatherData){
 
 function displayData(newData){
     console.log(newData);
+}
+
+function reset(){
+    locInput.value = "";
 }
