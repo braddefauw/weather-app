@@ -10,9 +10,18 @@ submitBtn.addEventListener("click", getWeather)
 
 async function getWeather() {
     const searchText = locInput.value;
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${searchText}&APPID=fc0c7dcaadfcedd322c65a4761888bed`);
+    const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=${searchText}&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
+        {
+            mode: 'cors',
+        }
+    );
     const weatherData = await response.json();
-    console.log(weatherData);
+    const newData = processData(weatherData);
+    displayData(newData);
+}
+
+function processData(weatherData){
     let kelvin = weatherData.main.temp;
     let fahrenheit = Math.round((kelvin - 273.15) * 9/5 +32);
     let celsius = Math.round(kelvin - 273.15);
@@ -29,6 +38,11 @@ async function getWeather() {
     let highTemp = weatherData.main.temp_max;
     let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
     let highTempC = Math.round(highTemp - 273.15);
-    console.log(fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
-        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF);
+    let selectWeatherData = {fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
+        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF};
+    return selectWeatherData;
+}
+
+function displayData(newData){
+    console.log(newData);
 }
