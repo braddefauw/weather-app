@@ -5,10 +5,14 @@ body {
 }
 
 .main-content {
-    height: 95%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #search-form {
+    height: 5%;
     width: 250px;
     margin-left: auto;
     padding: 2rem;
@@ -17,6 +21,13 @@ body {
     align-items: center;
 }
 
+.display {
+    width: 50rem;
+    height: 25rem;
+    border: 1px solid black;
+}
+
+/* footer styling */
 footer, footer div {
     display: flex;
     justify-content: center;
