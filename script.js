@@ -16,6 +16,7 @@ let pressure = document.querySelector("#pressure");
 let minTemp = document.querySelector("#min-temp");
 let maxTemp = document.querySelector("#max-temp");
 let iconImg = document.querySelector("#icon-img");
+let errMessage = document.querySelector(".error-message")
 
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
@@ -44,11 +45,16 @@ async function getWeather(e) {
             mode: 'cors',
         }
     );
-    const weatherData = await response.json();
-    console.log(weatherData);
-    const newData = processData(weatherData);
-    displayData(newData);
-    reset();
+    if(response.status === 404){
+        errMessage.style.display = "flex";
+    }else{
+        errMessage.style.display = "none";
+        const weatherData = await response.json();
+        // console.log(weatherData);
+        const newData = processData(weatherData);
+        displayData(newData);
+        reset();
+    }
 }
 
 function processData(weatherData){
