@@ -1,6 +1,8 @@
 // Open Weather Map API example
 // http://api.openweathermap.org/data/2.5/weather?q=London&APPID=fc0c7dcaadfcedd322c65a4761888bed
 
+//API mains: thunderstorm, drizzle, rain, snow, clear, clouds, other
+
 console.log("hello weather app!");
 
 //variables to grab for dynamic weather inputs
@@ -13,6 +15,7 @@ let humidity = document.querySelector("#humidity");
 let pressure = document.querySelector("#pressure");
 let minTemp = document.querySelector("#min-temp");
 let maxTemp = document.querySelector("#max-temp");
+let iconImg = document.querySelector("#icon-img");
 
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
@@ -42,7 +45,7 @@ async function getWeather(e) {
         }
     );
     const weatherData = await response.json();
-    // console.log(weatherData);
+    console.log(weatherData);
     const newData = processData(weatherData);
     displayData(newData);
     reset();
@@ -68,8 +71,9 @@ function processData(weatherData){
     let highTemp = weatherData.main.temp_max;
     let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
     let highTempC = Math.round(highTemp - 273.15);
+    let icon = weatherData.weather[0].icon;
     let selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
-        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF};
+        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF, icon};
     return selectWeatherData;
 }
 
@@ -82,7 +86,21 @@ function displayData(newData){
     humidity.innerText = newData.humidity;
     pressure.innerText = newData.pressure;
     minTemp.innerText = `${newData.lowTempF}° F`
-    maxTemp.innerText = `${newData.highTempF}° F`
+    maxTemp.innerText = `${newData.highTempF}° F`;
+    iconImg.src = `http://openweathermap.org/img/wn/${newData.icon}@2x.png`
+    if(newData.mainWeather === "Clouds"){
+        document.body.style.backgroundImage = "url(images/backgrounds/clouds.webp)"
+    }else if(newData.mainWeather === "Thunderstorm"){
+        document.body.style.backgroundImage = "url(images/backgrounds/thunderstorms.jpeg)"
+    }else if(newData.mainWeather === "Drizzle" || newData.mainWeather === "Rain"){
+        document.body.style.backgroundImage = "url(images/backgrounds/rain.webp)"
+    }else if(newData.mainWeather === "Snow"){
+        document.body.style.backgroundImage = "url(images/backgrounds/snow.jpeg)"
+    }else if(newData.mainWeather === "Clear"){
+        document.body.style.backgroundImage = "url(images/backgrounds/sun.jpeg)"
+    }else{
+        document.body.style.backgroundImage = "url(images/backgrounds/weather.webp)"
+    }
 }
 
 function reset(){
