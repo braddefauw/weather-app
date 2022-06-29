@@ -3,6 +3,12 @@
 
 console.log("hello weather app!");
 
+//variables to grab for dynamic weather inputs
+let temp = document.querySelector(".temp");
+let city = document.querySelector(".city");
+let main = document.querySelector(".main");
+let desc = document.querySelector(".desc");
+
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
 
@@ -46,7 +52,10 @@ function processData(weatherData){
 }
 
 function displayData(newData){
-    console.log(newData);
+    temp.innerText = newData.fahrenheit;
+    city.innerText = locInput.value;
+    main.innerText = newData.mainWeather;
+    desc.innerText = newData.description;
 }
 
 function reset(){

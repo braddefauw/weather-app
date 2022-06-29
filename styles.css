@@ -27,6 +27,27 @@ body {
     border: 1px solid black;
 }
 
+.main-info {
+    height: 65%;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.temp-and-city, .main-and-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.additional-info {
+    height: 35%;
+    border: 1px solid blue;
+}
+
 /* footer styling */
 footer, footer div {
     display: flex;
