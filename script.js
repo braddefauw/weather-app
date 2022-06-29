@@ -6,8 +6,8 @@ console.log("hello weather app!");
 //variables to grab for dynamic weather inputs
 let temp = document.querySelector(".temp");
 let city = document.querySelector(".city");
-let main = document.querySelector(".main");
-let desc = document.querySelector(".desc");
+let main = document.querySelector(".main-desc");
+let desc = document.querySelector(".additional-desc");
 let feelsLke = document.querySelector("#feels-like");
 let humidity = document.querySelector("#humidity");
 let pressure = document.querySelector("#pressure");
@@ -35,6 +35,9 @@ async function getWeather() {
 }
 
 function processData(weatherData){
+    // console.log(weatherData);
+    let city = weatherData.name;
+    let country = weatherData.sys.country;
     let kelvin = weatherData.main.temp;
     let fahrenheit = Math.round((kelvin - 273.15) * 9/5 +32);
     let celsius = Math.round(kelvin - 273.15);
@@ -51,21 +54,21 @@ function processData(weatherData){
     let highTemp = weatherData.main.temp_max;
     let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
     let highTempC = Math.round(highTemp - 273.15);
-    let selectWeatherData = {fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
+    let selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
         pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF};
     return selectWeatherData;
 }
 
 function displayData(newData){
-    temp.innerText = newData.fahrenheit;
-    city.innerText = locInput.value;
+    temp.innerText = `${newData.fahrenheit}° F`
+    city.innerText = `${newData.city}, ${newData.country}`;
     main.innerText = newData.mainWeather;
     desc.innerText = newData.description;
-    feelsLke.innerText = newData.feelsLikeF;
+    feelsLke.innerText = `${newData.feelsLikeF}° F`;
     humidity.innerText = newData.humidity;
     pressure.innerText = newData.pressure;
-    minTemp.innerText = newData.lowTempF;
-    maxTemp.innerText = newData.highTempF;
+    minTemp.innerText = `${newData.lowTempF}° F`
+    maxTemp.innerText = `${newData.highTempF}° F`
 }
 
 function reset(){
