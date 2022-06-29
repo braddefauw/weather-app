@@ -1,5 +1,5 @@
 body {
-    height: 97vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
     font-family: 'Merriweather Sans', sans-serif;
@@ -7,18 +7,24 @@ body {
 }
 
 .main-content {
-    height: 87.5%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-form-container {
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #search-form {
-    height: 5%;
     width: 250px;
+    height: 40px;
     margin-left: auto;
     margin-right: 1rem;
-    margin-top: 1rem;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -129,6 +135,7 @@ footer, footer div {
     color: white;
     margin: 0;
     height: 5%;
+    background: #1D71F2;
 }
 
 footer img {
