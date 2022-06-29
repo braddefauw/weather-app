@@ -1,5 +1,4 @@
 body {
-    background: blanchedalmond;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -7,6 +6,15 @@ body {
 
 .main-content {
     height: 95%;
+}
+
+#search-form {
+    width: 250px;
+    margin-left: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 footer, footer div {
