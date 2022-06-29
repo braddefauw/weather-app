@@ -46,6 +46,11 @@ body {
 .additional-info {
     height: 35%;
     border: 1px solid blue;
+    display: flex;
+}
+
+.additional-info > * {
+    width: 20%;
 }
 
 /* footer styling */

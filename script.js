@@ -8,6 +8,11 @@ let temp = document.querySelector(".temp");
 let city = document.querySelector(".city");
 let main = document.querySelector(".main");
 let desc = document.querySelector(".desc");
+let feelsLke = document.querySelector("#feels-like");
+let humidity = document.querySelector("#humidity");
+let pressure = document.querySelector("#pressure");
+let minTemp = document.querySelector("#min-temp");
+let maxTemp = document.querySelector("#max-temp");
 
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
@@ -56,6 +61,11 @@ function displayData(newData){
     city.innerText = locInput.value;
     main.innerText = newData.mainWeather;
     desc.innerText = newData.description;
+    feelsLke.innerText = newData.feelsLikeF;
+    humidity.innerText = newData.humidity;
+    pressure.innerText = newData.pressure;
+    minTemp.innerText = newData.lowTempF;
+    maxTemp.innerText = newData.highTempF;
 }
 
 function reset(){
