@@ -17,6 +17,7 @@ async function getWeather() {
         }
     );
     const weatherData = await response.json();
+    // console.log(weatherData);
     const newData = processData(weatherData);
     displayData(newData);
     reset();

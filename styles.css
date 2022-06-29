@@ -1,3 +1,32 @@
 body {
     background: blanchedalmond;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    height: 95%;
+}
+
+footer, footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: inherit;
+    color: black;;
+    margin: 0;
+    height: 5%;
+}
+
+footer img {
+    height: 1.5rem;
+    margin-left: 1rem;
+    margin-top: 0.25rem;
+    transition: transform 0.7s ease-in-out;
+    filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(146deg) brightness(101%) contrast(106%);
+}
+
+footer img:hover {
+    transform: rotate(360deg) scale(1.5);
 }
