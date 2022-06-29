@@ -6,7 +6,7 @@ body {
 }
 
 .main-content {
-    height: 80%;
+    height: 85%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,10 +16,35 @@ body {
     height: 5%;
     width: 250px;
     margin-left: auto;
-    padding: 2rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+    background-color: lightgray;
+    border-radius: 1rem;
+}
+
+#submit {
+    background: none;
+    border: none;
+    margin-left: 1rem;
+}
+
+#location {
+    margin-left: 1rem;
+    background: none;
+    border: none;
+    width: 75%;
+}
+
+#location::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+}
+
+#location:focus {
+    outline: none;
 }
 
 .display {

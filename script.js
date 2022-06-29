@@ -32,7 +32,8 @@ window.onload = async function(){
 
 submitBtn.addEventListener("click", getWeather)
 
-async function getWeather() {
+async function getWeather(e) {
+    e.preventDefault();
     const searchText = locInput.value;
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${searchText}&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
