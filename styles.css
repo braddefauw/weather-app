@@ -7,14 +7,14 @@ body {
 }
 
 .main-content {
-    height: 85%;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .search-form-container {
-    height: 10%;
+    height: 15%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -82,6 +82,20 @@ body {
     opacity: 0.85;
     border: 1px solid black;
     background: #1D71F2;
+}
+
+#temp-switch {
+    background-color: #FFCD00;
+    color: #1D71F2;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transform:translateY(-25%) translateX(-25%);
 }
 
 .main-info {
