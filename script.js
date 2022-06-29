@@ -17,6 +17,19 @@ let maxTemp = document.querySelector("#max-temp");
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
 
+window.onload = async function(){
+    const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=Chicago&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
+        {
+            mode: 'cors',
+        }
+    );
+    const weatherData = await response.json();
+    // console.log(weatherData);
+    const newData = processData(weatherData);
+    displayData(newData);
+}
+
 submitBtn.addEventListener("click", getWeather)
 
 async function getWeather() {
