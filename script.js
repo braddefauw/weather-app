@@ -1,7 +1,12 @@
 // Open Weather Map API example
 // http://api.openweathermap.org/data/2.5/weather?q=London&APPID=fc0c7dcaadfcedd322c65a4761888bed
 
+//colors: https://www.schemecolor.com/apple-weather-app-icon-2017-colors.php
+
 //API mains: thunderstorm, drizzle, rain, snow, clear, clouds, other
+
+//fahrenheit = imperial, celsius = metric
+let system = "imperial";
 
 console.log("hello weather app!");
 
@@ -16,7 +21,9 @@ let pressure = document.querySelector("#pressure");
 let minTemp = document.querySelector("#min-temp");
 let maxTemp = document.querySelector("#max-temp");
 let iconImg = document.querySelector("#icon-img");
-let errMessage = document.querySelector(".error-message")
+let errMessage = document.querySelector(".error-message");
+let tempSwitch = document.querySelector("#temp-switch");
+let selectWeatherData = {};
 
 let locInput = document.getElementById("location");
 let submitBtn = document.getElementById("submit");
@@ -78,21 +85,30 @@ function processData(weatherData){
     let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
     let highTempC = Math.round(highTemp - 273.15);
     let icon = weatherData.weather[0].icon;
-    let selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
+    selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
         pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF, icon};
     return selectWeatherData;
 }
 
 function displayData(newData){
-    temp.innerText = `${newData.fahrenheit}° F`
+    if(system === "imperial"){
+        temp.innerText = `${newData.fahrenheit}° F`;
+        feelsLke.innerText = `${newData.feelsLikeF}° F`;
+        feelsLke.innerText = `${newData.feelsLikeF}° F`;
+        minTemp.innerText = `${newData.lowTempF}° F`
+        maxTemp.innerText = `${newData.highTempF}° F`;
+    }else{
+        temp.innerText = `${newData.celsius}° C`;
+        feelsLke.innerText = `${newData.feelsLikeC}° C`;
+        feelsLke.innerText = `${newData.feelsLikeC}° C`;
+        minTemp.innerText = `${newData.lowTempC}° C`
+        maxTemp.innerText = `${newData.highTempC}° C`;
+    }
     city.innerText = `${newData.city}, ${newData.country}`;
     main.innerText = newData.mainWeather;
     desc.innerText = newData.description;
-    feelsLke.innerText = `${newData.feelsLikeF}° F`;
     humidity.innerText = newData.humidity;
     pressure.innerText = newData.pressure;
-    minTemp.innerText = `${newData.lowTempF}° F`
-    maxTemp.innerText = `${newData.highTempF}° F`;
     iconImg.src = `http://openweathermap.org/img/wn/${newData.icon}@2x.png`
     if(newData.mainWeather === "Clouds"){
         document.body.style.backgroundImage = "url(images/backgrounds/clouds.webp)"
@@ -112,3 +128,23 @@ function displayData(newData){
 function reset(){
     locInput.value = "";
 }
+
+tempSwitch.addEventListener("click", function(){
+    if(system === "imperial"){
+        temp.innerText = `${selectWeatherData.celsius}° C`;
+        feelsLke.innerText = `${selectWeatherData.feelsLikeC}° C`;
+        feelsLke.innerText = `${selectWeatherData.feelsLikeC}° C`;
+        minTemp.innerText = `${selectWeatherData.lowTempC}° C`
+        maxTemp.innerText = `${selectWeatherData.highTempC}° C`;
+        tempSwitch.innerText = "F";
+        system = "metric";
+    }else if(system==="metric"){
+        temp.innerText = `${selectWeatherData.fahrenheit}° F`;
+        feelsLke.innerText = `${selectWeatherData.feelsLikeF}° F`;
+        feelsLke.innerText = `${selectWeatherData.feelsLikeF}° F`;
+        minTemp.innerText = `${selectWeatherData.lowTempF}° F`
+        maxTemp.innerText = `${selectWeatherData.highTempF}° F`;
+        tempSwitch.innerText = "C";
+        system = "imperial";
+    }
+})
