@@ -17,7 +17,7 @@ let main = document.querySelector(".main-desc");
 let desc = document.querySelector(".additional-desc");
 let feelsLke = document.querySelector("#feels-like");
 let humidity = document.querySelector("#humidity");
-let pressure = document.querySelector("#pressure");
+let wind = document.querySelector("#wind");
 let minTemp = document.querySelector("#min-temp");
 let maxTemp = document.querySelector("#max-temp");
 let iconImg = document.querySelector("#icon-img");
@@ -77,7 +77,6 @@ function processData(weatherData){
     let feelsLikeF = Math.round((feelsLike - 273.15) * 9/5 +32);
     let feelsLikeC = Math.round(feelsLike - 273.15);
     let humidity = weatherData.main.humidity;
-    let pressure = weatherData.main.pressure;
     let lowTemp = weatherData.main.temp_min;
     let lowTempF = Math.round((lowTemp - 273.15) * 9/5 +32);
     let lowTempC = Math.round(lowTemp - 273.15);
@@ -85,8 +84,10 @@ function processData(weatherData){
     let highTempF = Math.round((highTemp - 273.15) * 9/5 +32);
     let highTempC = Math.round(highTemp - 273.15);
     let icon = weatherData.weather[0].icon;
-    selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity, 
-        pressure, lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF, icon};
+    let windMS = Math.round(weatherData.wind.speed);
+    let windMPH = Math.round(windMS * 2.2369);
+    selectWeatherData = {city, country, fahrenheit, celsius, mainWeather, description, feelsLike, feelsLikeC, feelsLikeF, humidity,
+         lowTemp, lowTempC, lowTempF, highTemp, highTempC, highTempF, icon, windMS, windMPH};
     return selectWeatherData;
 }
 
@@ -108,7 +109,7 @@ function displayData(newData){
     main.innerText = newData.mainWeather;
     desc.innerText = newData.description;
     humidity.innerText = `${newData.humidity}%`;
-    pressure.innerText = newData.pressure;
+    wind.innerText = `${newData.windMPH} mph`;
     iconImg.src = `http://openweathermap.org/img/wn/${newData.icon}@2x.png`
     if(newData.mainWeather === "Clouds"){
         document.body.style.backgroundImage = "url(images/backgrounds/clouds.webp)"
@@ -136,6 +137,7 @@ tempSwitch.addEventListener("click", function(){
         feelsLke.innerText = `${selectWeatherData.feelsLikeC}° C`;
         minTemp.innerText = `${selectWeatherData.lowTempC}° C`
         maxTemp.innerText = `${selectWeatherData.highTempC}° C`;
+        wind.innerText = `${selectWeatherData.windMS} m/s`;
         tempSwitch.innerText = "F";
         system = "metric";
     }else if(system==="metric"){
@@ -144,6 +146,7 @@ tempSwitch.addEventListener("click", function(){
         feelsLke.innerText = `${selectWeatherData.feelsLikeF}° F`;
         minTemp.innerText = `${selectWeatherData.lowTempF}° F`
         maxTemp.innerText = `${selectWeatherData.highTempF}° F`;
+        wind.innerText = `${selectWeatherData.windMPH} mph`;
         tempSwitch.innerText = "C";
         system = "imperial";
     }
