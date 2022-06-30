@@ -107,7 +107,7 @@ function displayData(newData){
     city.innerText = `${newData.city}, ${newData.country}`;
     main.innerText = newData.mainWeather;
     desc.innerText = newData.description;
-    humidity.innerText = newData.humidity;
+    humidity.innerText = `${newData.humidity}%`;
     pressure.innerText = newData.pressure;
     iconImg.src = `http://openweathermap.org/img/wn/${newData.icon}@2x.png`
     if(newData.mainWeather === "Clouds"){
