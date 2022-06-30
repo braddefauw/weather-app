@@ -30,7 +30,7 @@ let submitBtn = document.getElementById("submit");
 
 window.onload = async function(){
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=Chicago&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
+        `https://api.openweathermap.org/data/2.5/weather?q=Chicago&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
         {
             mode: 'cors',
         }
@@ -47,7 +47,7 @@ async function getWeather(e) {
     e.preventDefault();
     const searchText = locInput.value;
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${searchText}&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${searchText}&APPID=fc0c7dcaadfcedd322c65a4761888bed`,
         {
             mode: 'cors',
         }
@@ -110,7 +110,7 @@ function displayData(newData){
     desc.innerText = newData.description;
     humidity.innerText = `${newData.humidity}%`;
     wind.innerText = `${newData.windMPH} mph`;
-    iconImg.src = `http://openweathermap.org/img/wn/${newData.icon}@2x.png`
+    iconImg.src = `https://openweathermap.org/img/wn/${newData.icon}@2x.png`
     if(newData.mainWeather === "Clouds"){
         document.body.style.backgroundImage = "url(images/backgrounds/clouds.webp)"
     }else if(newData.mainWeather === "Thunderstorm"){
