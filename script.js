@@ -151,3 +151,6 @@ tempSwitch.addEventListener("click", function(){
         system = "imperial";
     }
 })
+
+// test feature
+// in the future, add code for night backgrounds
